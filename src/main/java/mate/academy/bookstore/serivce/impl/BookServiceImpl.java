@@ -1,13 +1,11 @@
 package mate.academy.bookstore.serivce.impl;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookstore.model.Book;
 import mate.academy.bookstore.repository.BookRepository;
 import mate.academy.bookstore.serivce.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
