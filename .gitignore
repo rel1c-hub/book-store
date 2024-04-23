@@ -18,7 +18,8 @@ target/
 *.iws
 *.iml
 *.ipr
-
+src/test/resources
+src/main/resources
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
