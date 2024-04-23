@@ -1,13 +1,11 @@
 package mate.academy.bookstore.exception;
 
-import org.hibernate.ObjectNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-public class EntityNotFoundException extends ObjectNotFoundException {
-    public EntityNotFoundException(Object identifier, String entityName) {
-        super(identifier, entityName);
-    }
-
-    public EntityNotFoundException(String entityName, Object identifier) {
-        super(entityName, identifier);
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class EntityNotFoundException extends RuntimeException {
+    public EntityNotFoundException(String message) {
+        super(message);
     }
 }
