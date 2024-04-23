@@ -9,21 +9,10 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class BookStoreApplication {
-    @Autowired
-    private BookService bookService;
 
     public static void main(String[] args) {
         SpringApplication.run(BookStoreApplication.class, args);
     }
 
-    @Bean
-    public CommandLineRunner commandLineRunner(BookStoreApplication app) {
-        return new CommandLineRunner() {
-            @Override
-            public void run(String... args) throws Exception {
-                System.out.println(bookService.findAll());
-            }
-        };
-    }
 
 }
