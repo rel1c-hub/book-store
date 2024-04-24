@@ -2,6 +2,7 @@ package mate.academy.bookstore.repository.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.EntityTransaction;
 import java.util.List;
 import java.util.Optional;
@@ -42,6 +43,8 @@ public class BookRepositoryImpl implements BookRepository {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             Book book = entityManager.find(Book.class, id);
             return Optional.ofNullable(book);
+        } catch (EntityNotFoundException e) {
+            throw new EntityNotFoundException("Can't find book by id : " + id, e);
         }
     }
 
