@@ -47,6 +47,17 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         body.put(STATUS, status.value());
         body.put(ERRORS, errors);
         return new ResponseEntity<>(body, status);
+            WebRequest request
+    ) {
+        List<String> errors = ex.getBindingResult().getAllErrors().stream()
+                .map(this::getErrorMessage)
+                .toList();
+        return handleException(HttpStatus.BAD_REQUEST, errors);
+    }
+
+    @ExceptionHandler({EntityNotFoundException.class})
+    protected ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException ex) {
+        return handleException(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
     private ResponseEntity<Object> handleException(HttpStatus status, Object errors) {
@@ -64,5 +75,12 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
             return fieldName + ": " + message;
         }
         return e.getDefaultMessage();
+    private String getErrorMessage(ObjectError error) {
+        if (error instanceof FieldError fieldError) {
+            String fieldName = fieldError.getField();
+            String errorMessage = fieldError.getDefaultMessage();
+            return fieldName + " " + errorMessage;
+        }
+        return error.getDefaultMessage();
     }
 }
