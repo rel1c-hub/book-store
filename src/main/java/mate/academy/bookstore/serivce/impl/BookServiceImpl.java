@@ -9,6 +9,7 @@ import mate.academy.bookstore.mapper.BookMapper;
 import mate.academy.bookstore.model.Book;
 import mate.academy.bookstore.repository.BookRepository;
 import mate.academy.bookstore.serivce.BookService;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,9 +24,8 @@ public class BookServiceImpl implements BookService {
         return bookMapper.toDto(bookRepository.save(book));
     }
 
-    @Override
-    public List<BookDto> findAll() {
-        return bookRepository.findAll().stream()
+    public List<BookDto> findAll(Pageable pageable) {
+        return bookRepository.findAll(pageable).stream()
                 .map(bookMapper::toDto)
                 .toList();
     }
@@ -40,7 +40,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto updateById(Long id, CreateBookRequestDto requestDto) {
-        if (!bookRepository.existsById(id)) {
+        if (!existsById(id)) {
             throw new EntityNotFoundException("Can't update book id: " + id);
         }
         Book book = bookMapper.toModel(requestDto);
@@ -50,9 +50,13 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void deleteById(Long id) {
-        if (!bookRepository.existsById(id)) {
+        if (!existsById(id)) {
             throw new EntityNotFoundException("Can't delete book by id: " + id);
         }
         bookRepository.deleteById(id);
+    }
+
+    private boolean existsById(Long id) {
+        return bookRepository.existsById(id);
     }
 }
