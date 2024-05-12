@@ -40,7 +40,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         return handleException(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
-    @ExceptionHandler({RegistrationException.class})
+    @ExceptionHandler(RegistrationException.class)
     protected ResponseEntity<Object> handleRegistrationException(RegistrationException ex) {
         return handleException(HttpStatus.CONFLICT, ex.getMessage());
     }
