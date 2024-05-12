@@ -27,26 +27,6 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
             MethodArgumentNotValidException ex,
             HttpHeaders headers,
             HttpStatusCode status,
-            WebRequest request) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("status", HttpStatus.BAD_REQUEST);
-        List<String> errors = ex.getBindingResult().getAllErrors().stream()
-                .map(this::getErrorMessage)
-                .toList();
-        body.put(ERRORS, errors);
-        return new ResponseEntity<>(body, headers, status);
-    }
-
-    @ExceptionHandler({EntityNotFoundException.class})
-    protected ResponseEntity<Object> handleEntityNotFoundException(
-            HttpStatus status,
-            Object errors) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put(TIMESTAMP, LocalDateTime.now());
-        body.put(STATUS, status.value());
-        body.put(ERRORS, errors);
-        return new ResponseEntity<>(body, status);
             WebRequest request
     ) {
         List<String> errors = ex.getBindingResult().getAllErrors().stream()
@@ -68,13 +48,6 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         return new ResponseEntity<>(body, status);
     }
 
-    private String getErrorMessage(ObjectError e) {
-        if (e instanceof FieldError) {
-            String fieldName = ((FieldError) e).getField();
-            String message = e.getDefaultMessage();
-            return fieldName + ": " + message;
-        }
-        return e.getDefaultMessage();
     private String getErrorMessage(ObjectError error) {
         if (error instanceof FieldError fieldError) {
             String fieldName = fieldError.getField();
