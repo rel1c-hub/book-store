@@ -1,4 +1,4 @@
-package mate.academy.bookstore.serivce.impl;
+package mate.academy.bookstore.security;
 
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookstore.exception.EntityNotFoundException;

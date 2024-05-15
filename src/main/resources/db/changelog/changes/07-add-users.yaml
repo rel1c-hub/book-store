@@ -11,7 +11,7 @@ databaseChangeLog:
                   value: "harry.potter@gmail.com"
               - column:
                   name: password
-                  value: "$2a$12$NDd3ta.qEAHYOrQ9m3iJ9u..FSIeVkYuXqATEgXLvbhrDYwRgNApa"
+                  value: "12341234"
               - column:
                   name: first_name
                   value: "Harry"
@@ -35,7 +35,7 @@ databaseChangeLog:
                   value: "hermione.granger@gmail.com"
               - column:
                   name: password
-                  value: "$2a$12$NDd3ta.qEAHYOrQ9m3iJ9u..FSIeVkYuXqATEgXLvbhrDYwRgNApa"
+                  value: "1234"
               - column:
                   name: first_name
                   value: "Hermione"
