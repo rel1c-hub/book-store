@@ -1,6 +1,5 @@
 package mate.academy.bookstore.serivce.impl;
 
-import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookstore.model.Role;
 import mate.academy.bookstore.model.Role.RoleName;
@@ -14,7 +13,8 @@ public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepository;
 
     @Override
-    public Set<Role> getAllByName(RoleName name) {
-        return roleRepository.getAllByName(name);
+    public Role getByName(RoleName name) {
+        return roleRepository.findByName(name)
+             .orElseThrow(() -> new RuntimeException("cannot fetch role with name" + name));
     }
 }
