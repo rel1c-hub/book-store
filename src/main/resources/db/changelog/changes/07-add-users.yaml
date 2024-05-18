@@ -35,7 +35,7 @@ databaseChangeLog:
                   value: "hermione.granger@gmail.com"
               - column:
                   name: password
-                  value: "1234"
+                  value: "12341234"
               - column:
                   name: first_name
                   value: "Hermione"

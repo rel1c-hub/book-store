@@ -16,10 +16,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
 
-    public UserLoginResponseDto authenticate(UserLoginRequestDto registrationRequest) {
+    public UserLoginResponseDto authenticate(UserLoginRequestDto loginRequestDto) {
         final Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(registrationRequest.email(),
-                        registrationRequest.password())
+                new UsernamePasswordAuthenticationToken(loginRequestDto.email(),
+                        loginRequestDto.password())
         );
         String token = jwtUtil.generateToken(authentication.getName());
         return new UserLoginResponseDto(token);
