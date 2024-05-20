@@ -32,7 +32,7 @@ public class BookController {
     @Operation(summary = "Get all Books",
             description = "Get a list of all Books")
     public List<BookDto> getAll(Pageable pageable) {
-        return bookService.findAll(pageable);
+        return bookService.getAll(pageable);
     }
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
@@ -40,7 +40,7 @@ public class BookController {
     @Operation(summary = "Get Book by Id",
             description = "Get a book by Id, if there is one")
     public BookDto getBookById(@PathVariable Long id) {
-        return bookService.findById(id);
+        return bookService.getById(id);
     }
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
