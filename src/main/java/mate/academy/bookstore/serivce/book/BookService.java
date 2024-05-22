@@ -1,4 +1,4 @@
-package mate.academy.bookstore.serivce;
+package mate.academy.bookstore.serivce.book;
 
 import java.util.List;
 import mate.academy.bookstore.dto.book.BookDto;

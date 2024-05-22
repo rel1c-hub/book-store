@@ -1,10 +1,9 @@
-package mate.academy.bookstore.serivce.impl;
+package mate.academy.bookstore.serivce.role;
 
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookstore.model.Role;
 import mate.academy.bookstore.model.Role.RoleName;
 import mate.academy.bookstore.repository.RoleRepository;
-import mate.academy.bookstore.serivce.RoleService;
 import org.springframework.stereotype.Service;
 
 @Service
