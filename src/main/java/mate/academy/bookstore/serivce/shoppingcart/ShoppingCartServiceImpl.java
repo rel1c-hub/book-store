@@ -38,7 +38,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public CartItemResponseDto updateCart(UpdateCartItemRequestDto requestDto, Long cartItemId, Long userId) {
+    public CartItemResponseDto updateCart(UpdateCartItemRequestDto requestDto,
+                                          Long cartItemId, Long userId) {
         ShoppingCart shoppingCart = getShoppingCartForUser(userId);
         CartItem cartItem = cartItemService.update(cartItemId, requestDto);
         shoppingCartRepository.save(shoppingCart);
@@ -52,7 +53,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 .filter(item -> item.getId().equals(cartItemId))
                 .findAny()
                 .orElseThrow(() -> new EntityNotFoundException(
-                        "Can't find cart item with id " + cartItemId));
+                        "Can't delete item with id: " + cartItemId));
         cartItemService.delete(cartItem.getId());
     }
 
@@ -67,6 +68,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private ShoppingCart getShoppingCartForUser(Long userId) {
         return shoppingCartRepository.findByUserId(userId)
                 .orElseThrow(() -> new EntityNotFoundException(
-                        "Cannot find shopping cart for user ID " + userId));
+                        "Cannot get shopping cart for user: " + userId));
     }
 }

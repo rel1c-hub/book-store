@@ -46,4 +46,9 @@ public class CartItemServiceImpl implements CartItemService {
     public void delete(Long id) {
         cartItemRepository.deleteById(id);
     }
+
+    private CartItem getCartItemById(Long id) {
+        return cartItemRepository.findById(id).orElseThrow(() ->
+                new EntityNotFoundException("Can't find a cart item with id " + id));
+    }
 }

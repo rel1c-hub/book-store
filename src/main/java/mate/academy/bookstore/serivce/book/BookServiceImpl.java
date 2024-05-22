@@ -20,6 +20,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDto save(CreateBookRequestDto requestDto) {
         Book book = bookMapper.toModel(requestDto);
+        if (book.getCategories().contains(null)) {
+            throw new IllegalArgumentException("Category is null");
+        }
         return bookMapper.toDto(bookRepository.save(book));
     }
 
