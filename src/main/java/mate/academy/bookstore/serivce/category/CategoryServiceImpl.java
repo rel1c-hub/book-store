@@ -1,4 +1,4 @@
-package mate.academy.bookstore.serivce.impl;
+package mate.academy.bookstore.serivce.category;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -9,8 +9,7 @@ import mate.academy.bookstore.exception.EntityNotFoundException;
 import mate.academy.bookstore.mapper.CategoryMapper;
 import mate.academy.bookstore.model.Category;
 import mate.academy.bookstore.repository.CategoryRepository;
-import mate.academy.bookstore.serivce.BookService;
-import mate.academy.bookstore.serivce.CategoryService;
+import mate.academy.bookstore.serivce.book.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
