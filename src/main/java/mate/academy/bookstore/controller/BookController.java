@@ -7,7 +7,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookstore.dto.book.BookDto;
 import mate.academy.bookstore.dto.book.CreateBookRequestDto;
-import mate.academy.bookstore.serivce.book.BookService;
+import mate.academy.bookstore.serivce.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,7 +32,7 @@ public class BookController {
     @Operation(summary = "Get all Books",
             description = "Get a list of all Books")
     public List<BookDto> getAll(Pageable pageable) {
-        return bookService.getAll(pageable);
+        return bookService.findAll(pageable);
     }
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
@@ -40,7 +40,7 @@ public class BookController {
     @Operation(summary = "Get Book by Id",
             description = "Get a book by Id, if there is one")
     public BookDto getBookById(@PathVariable Long id) {
-        return bookService.getById(id);
+        return bookService.findById(id);
     }
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")

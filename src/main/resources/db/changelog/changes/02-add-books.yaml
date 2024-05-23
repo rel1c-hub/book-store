@@ -8,70 +8,40 @@ databaseChangeLog:
             columns:
               - column:
                   name: title
-                  value: "Dune"
+                  value: "Harry Potter and the Sorcerer's Stone"
               - column:
                   name: author
-                  value: "Frank Herbert"
+                  value: "J.K. Rowling"
               - column:
                   name: isbn
-                  value: "9780441013593"
+                  value: "9780590353427"
               - column:
                   name: price
-                  value: 9.99
+                  valueNumeric: "250"
               - column:
                   name: description
-                  value: "Dune is a science fiction novel by American author Frank Herbert, originally published in 1965."
+                  value: "Harry Potter and the Sorcerer's Stone is the first novel in the Harry Potter series. It follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday."
+              - column:
+                  name: cover_image
+                  value: "harrypotter1.jpeg"
         - insert:
             tableName: books
             columns:
               - column:
                   name: title
-                  value: "1984"
+                  value: "Harry Potter and the Chamber of Secrets"
               - column:
                   name: author
-                  value: "George Orwell"
+                  value: "J.K. Rowling"
               - column:
                   name: isbn
-                  value: "9780451524935"
+                  value: "9780439064873"
               - column:
                   name: price
-                  value: 6.99
+                  valueNumeric: "280"
               - column:
                   name: description
-                  value: "1984, a dystopian social science fiction novel and cautionary tale, was written by the English writer George Orwell."
-        - insert:
-            tableName: books
-            columns:
+                  value: "Harry Potter and the Chamber of Secrets is the second novel in the Harry Potter series. It follows Harry's second year at Hogwarts School of Witchcraft and Wizardry."
               - column:
-                  name: title
-                  value: "Pride and Prejudice"
-              - column:
-                  name: author
-                  value: "Jane Austen"
-              - column:
-                  name: isbn
-                  value: "9780679783268"
-              - column:
-                  name: price
-                  value: 7.99
-              - column:
-                  name: description
-                  value: "Pride and Prejudice is a romantic novel of manners written by Jane Austen in 1813."
-        - insert:
-            tableName: books
-            columns:
-              - column:
-                  name: title
-                  value: "The Catcher in the Rye"
-              - column:
-                  name: author
-                  value: "J.D. Salinger"
-              - column:
-                  name: isbn
-                  value: "9780316769488"
-              - column:
-                  name: price
-                  value: 8.99
-              - column:
-                  name: description
-                  value: "The Catcher in the Rye is a novel by J. D. Salinger, partially published in serial form in 1945-1946 and as a novel in 1951."
+                  name: cover_image
+                  value: "harrypotter2.jpeg"
