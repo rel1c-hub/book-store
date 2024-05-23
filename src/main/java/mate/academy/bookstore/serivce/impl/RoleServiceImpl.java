@@ -1,9 +1,10 @@
-package mate.academy.bookstore.serivce.role;
+package mate.academy.bookstore.serivce.impl;
 
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookstore.model.Role;
 import mate.academy.bookstore.model.Role.RoleName;
 import mate.academy.bookstore.repository.RoleRepository;
+import mate.academy.bookstore.serivce.RoleService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,7 +14,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getByName(RoleName name) {
-        return roleRepository.getAllByName(name)
+        return roleRepository.findByName(name)
              .orElseThrow(() -> new RuntimeException("cannot fetch role with name" + name));
     }
 }

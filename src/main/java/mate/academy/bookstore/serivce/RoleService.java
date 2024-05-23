@@ -1,4 +1,4 @@
-package mate.academy.bookstore.serivce.role;
+package mate.academy.bookstore.serivce;
 
 import mate.academy.bookstore.model.Role;
 import mate.academy.bookstore.model.Role.RoleName;
