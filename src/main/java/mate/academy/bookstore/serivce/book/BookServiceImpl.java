@@ -27,20 +27,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDto save(CreateBookRequestDto requestDto) {
         Book book = bookMapper.toModel(requestDto);
-        Set<Category> getCategories = book.getCategories();
-        Set<Long> categoryIds = new HashSet<>();
-        List<Category> categoryList = categoryRepository.findAllById(categoryIds);
-        for (Category category : getCategories) {
-            categoryIds.add(category.getId());
-        }
-        if (categoryIds.size() != categoryList.size()) {
-            Set<Long> newCategoryIds = getCategories.stream()
-                    .map(Category::getId)
-                    .collect(Collectors.toSet());
-            categoryIds.removeAll(newCategoryIds);
-            throw new EntityNotFoundException("Invalid category ids: " + categoryIds);
-        }
-        book.setCategories(new HashSet<>(categoryList));
+        Set<Long> categoryIds = getCategoryIdsFromBook(book);
+        Set<Category> validatedCategories = validateAndGetCategories(categoryIds);
+        book.setCategories(validatedCategories);
+
         return bookMapper.toDto(bookRepository.save(book));
     }
 
@@ -85,5 +75,23 @@ public class BookServiceImpl implements BookService {
 
     private boolean existsById(Long id) {
         return bookRepository.existsById(id);
+    }
+
+    private Set<Long> getCategoryIdsFromBook(Book book) {
+        return book.getCategories().stream()
+                .map(Category::getId)
+                .collect(Collectors.toSet());
+    }
+
+    private Set<Category> validateAndGetCategories(Set<Long> categoryIds) {
+        List<Category> categories = categoryRepository.findAllById(categoryIds);
+        if (categories.size() != categoryIds.size()) {
+            Set<Long> foundCategoryIds = categories.stream()
+                    .map(Category::getId)
+                    .collect(Collectors.toSet());
+            categoryIds.removeAll(foundCategoryIds);
+            throw new EntityNotFoundException("Invalid category ids: " + categoryIds);
+        }
+        return new HashSet<>(categories);
     }
 }
