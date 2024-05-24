@@ -24,6 +24,11 @@ public class BookServiceImpl implements BookService {
         return bookMapper.toDto(bookRepository.save(book));
     }
 
+    @Override
+    public BookDto save(BookDto bookDto) {
+
+    }
+
     public List<BookDto> getAll(Pageable pageable) {
         return bookRepository.findAll(pageable).stream()
                 .map(bookMapper::toDto)
