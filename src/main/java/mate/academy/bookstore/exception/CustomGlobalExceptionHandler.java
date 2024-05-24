@@ -34,19 +34,19 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         List<String> errors = ex.getBindingResult().getAllErrors().stream()
                 .map(this::getErrorMessage)
                 .toList();
-        logger.error("smth went wrong", ex);
+        logger.error("Wrong input", ex);
         return handleException(HttpStatus.BAD_REQUEST, errors);
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
     protected ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException ex) {
-        logger.error("smth went wrong", ex);
+        logger.error("Can't find entity", ex);
         return handleException(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
     @ExceptionHandler(RegistrationException.class)
     protected ResponseEntity<Object> handleRegistrationException(RegistrationException ex) {
-        logger.error("smth went wrong", ex);
+        logger.error("Can't register user", ex);
         return handleException(HttpStatus.CONFLICT, ex.getMessage());
     }
 
