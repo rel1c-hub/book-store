@@ -2,7 +2,6 @@ package mate.academy.bookstore.serivce.user;
 
 import static mate.academy.bookstore.model.Role.RoleName.USER;
 
-import jakarta.transaction.Transactional;
 import java.util.Collections;
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookstore.dto.user.UserRegistrationRequestDto;
@@ -25,7 +24,6 @@ public class UserServiceImpl implements UserService {
     private final ShoppingCartService shoppingCartService;
 
     @Override
-    @Transactional
     public UserResponseDto register(UserRegistrationRequestDto requestDto) {
         if (userRepository.existsByEmail(requestDto.getEmail())) {
             throw new RuntimeException("User with email " + requestDto.getEmail()

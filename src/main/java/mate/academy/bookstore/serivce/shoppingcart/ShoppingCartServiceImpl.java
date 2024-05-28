@@ -1,6 +1,5 @@
 package mate.academy.bookstore.serivce.shoppingcart;
 
-import jakarta.transaction.Transactional;
 import java.util.HashSet;
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookstore.dto.cartitem.CartItemResponseDto;
@@ -31,7 +30,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    @Transactional
     public CartItemResponseDto addToCart(CreateCartItemRequestDto requestDto, Long userId) {
         ShoppingCart shoppingCart = getShoppingCartForUser(userId);
         CartItem cartItem = cartItemService.addToCart(requestDto, shoppingCart);
@@ -40,7 +38,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    @Transactional
     public CartItemResponseDto updateCart(UpdateCartItemRequestDto requestDto,
                                           Long cartItemId, Long userId) {
         ShoppingCart shoppingCart = getShoppingCartForUser(userId);
@@ -50,7 +47,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    @Transactional
     public void deleteCartItem(Long cartItemId, Long userId) {
         ShoppingCart shoppingCart = getShoppingCartForUser(userId);
         CartItem cartItem = shoppingCart.getCartItems().stream()
