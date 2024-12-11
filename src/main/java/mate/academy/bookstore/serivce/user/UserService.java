@@ -1,4 +1,4 @@
-package mate.academy.bookstore.serivce;
+package mate.academy.bookstore.serivce.user;
 
 import mate.academy.bookstore.dto.user.UserRegistrationRequestDto;
 import mate.academy.bookstore.dto.user.UserResponseDto;
